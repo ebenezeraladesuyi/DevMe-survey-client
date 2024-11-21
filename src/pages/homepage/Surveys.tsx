@@ -7,8 +7,29 @@ import Questions from "./Questions";
 import { SurveyResponse, User } from "../../types/Interface";
 import { DatasIsaLoading } from "../isLoading/DataIsLoading";
 import { useNavigate } from "react-router-dom";
+// import { ScrollToTop } from "../../components";
 
 const Surveys: React.FC = () => {
+
+    const scrollToTop = () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth", // Optional: smooth scrolling
+        });
+      };
+      
+      const handleNextPage = () => {
+        setPage(page + 1);
+        scrollToTop();
+      };
+      
+      const handlePreviousPage = () => {
+        setPage(page - 1);
+        scrollToTop();
+      };
+
+      
+
     const { handleSubmit, control, setValue } = useForm();
     const [page, setPage] = useState(0);
     const [user, setUser] = useState<User>({ name: "", email: "", phone: "" });
@@ -49,7 +70,9 @@ const Surveys: React.FC = () => {
 
 
 
-    return (<div className="w-full min-h-[100vh] flex justify-center items-center">
+    return (<>
+    {/* <ScrollToTop /> */}
+    <div className="w-full min-h-[100vh] flex justify-center items-center">
       <div className="w-[90%] md:w-[60%] lg:w-[40%] flex flex-col gap-3 items-center justify-center mt-[100px] md:mt-[120px]">
         <h1 className="text-[20px] md:text-[25px] text-white p-2 px-4 rounded-md bg-[#982293]">Survey Form</h1>
 
@@ -147,12 +170,18 @@ const Surveys: React.FC = () => {
 
           <div className="flex gap-4 items-center mt-[15px] mb-[30px] w-full justify-center">
             {page > 0 && (
-              <button className="w-[100px] bg-[#982293] text-white outline-none border-none  md:w-[150px] md:text-[19px]" type="button" onClick={() => setPage(page - 1)}>
+              <button className="w-[100px] bg-[#982293] text-white outline-none border-none  md:w-[150px] md:text-[19px]" type="button" 
+            //   onClick={() => setPage(page - 1); scrollToTop()}
+            onClick={handlePreviousPage}
+              >
                 Previous
               </button>
             )}
             {page < Math.ceil(Questions.length / 4) - 1 ? (
-              <button className="w-[100px] md:w-[150px] md:text-[19px] bg-[#982293] text-white outline-none border-none" type="button" onClick={() => setPage(page + 1)}>
+              <button className="w-[100px] md:w-[150px] md:text-[19px] bg-[#982293] text-white outline-none border-none" type="button" 
+            //   onClick={() => setPage(page + 1); scrollToTop()}
+            onClick={handleNextPage}
+              >
                 Next
               </button>
             ) : (
@@ -164,7 +193,8 @@ const Surveys: React.FC = () => {
           </div>
         </form>
       </div>
-    </div>);
+    </div>
+    </>);
 };
 
 export default Surveys;
