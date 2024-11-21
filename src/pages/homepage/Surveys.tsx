@@ -91,10 +91,10 @@ const Surveys: React.FC = () => {
           {/* Survey questions */}
           {currentQuestions.map((question) => (
             <div key={question.id} className="text-[15px] md:text-[18px] mt-[6px] md:mt-[10px]">
-              <p>{question.question}</p>
+              <p className="text-[#982293]">{question.question}</p>
               {question.type === "checkbox" && question.options ? (
                 question.options.map((option) => (
-                  <label key={option}>
+                  <label className="text-[#982293" key={option}>
                     <Controller
                       name={question.id}
                       control={control}
@@ -103,7 +103,7 @@ const Surveys: React.FC = () => {
                         <input
                           type="checkbox"
                           value={option} 
-                          className="text-[13px] mr-[4px] ml-[4px] w-[20px] h-[20px]" 
+                          className="text-[13px] mr-[4px] ml-[4px] w-[20px] h-[20px] text-[#982293]" 
                           checked={field.value.includes(option)}
                           onChange={(e) => {
                             const newValue = e.target.checked
@@ -119,14 +119,14 @@ const Surveys: React.FC = () => {
                 ))
               ) : question.type === "radio" && question.options ? (
                 question.options.map((option) => (
-                  <label key={option}>
+                  <label className="text-[#982293" key={option}>
                     <Controller
                       name={question.id}
                       control={control}
                       defaultValue=""
                       render={({ field }) => (
                         <input type="radio" {...field} value={option} 
-                        className="text-[13px] mr-[4px] ml-[4px]" required />
+                        className="text-[13px] mr-[4px] ml-[4px] text-[#982293]" required />
                       )}
                     />
                     {option}
