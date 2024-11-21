@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import Questions from "./Questions";
 import { SurveyResponse, User } from "../../types/Interface";
+import { DatasIsaLoading } from "../isLoading/DataIsLoading";
+import { useNavigate } from "react-router-dom";
 
 const Surveys: React.FC = () => {
     const { handleSubmit, control, setValue } = useForm();
     const [page, setPage] = useState(0);
     const [user, setUser] = useState<User>({ name: "", email: "", phone: "" });
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate()
 
     const onSubmit = async (data: any) => {
       const responses = Object.entries(data).map(([questionId, answer]) => ({
@@ -17,16 +22,27 @@ const Surveys: React.FC = () => {
       }));
 
       const surveyData: SurveyResponse = { user, responses };
-
+        setLoading(true)
       try {
-        const response = await axios.post("http://localhost:2000/survey/submit", surveyData);
+        const response = await axios.post("https://devme-survey-server.onrender.com/survey/submit", surveyData, 
+            {
+              headers: {
+                "Content-Type": "application/json",
+              }
+            }
+        );
 
         console.log(response.data);
 
         toast.success("Survey submitted successfully!");
+
+        navigate("/success")
+
       } catch (error: any) {
         toast.error(`Submission failed: ${error.response?.data?.message || "Something went wrong."}`);
-      }
+      } finally {
+            setLoading(false)
+    }
     };
 
     const currentQuestions = Questions.slice(page * 5, page * 5 + 5);
@@ -35,7 +51,7 @@ const Surveys: React.FC = () => {
 
     return (<div className="w-full min-h-[100vh] flex justify-center items-center">
       <div className="w-[90%] md:w-[60%] lg:w-[40%] flex flex-col gap-3 items-center justify-center mt-[100px] md:mt-[120px]">
-        <h1 className="text-[20px] md:text-[25px] text-[#982293]">Survey Form</h1>
+        <h1 className="text-[20px] md:text-[25px] text-white p-2 px-4 rounded-md bg-[#982293]">Survey Form</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-2 ">
           {/* Dynamic user information section */}
@@ -140,7 +156,10 @@ const Surveys: React.FC = () => {
                 Next
               </button>
             ) : (
-              <button className="w-[100px] md:w-[150px] md:text-[19px] bg-[#982293] text-white outline-none border-none" type="submit">Submit</button>
+            //    {loading ? 
+            //     (<div><DatasIsaLoading /></div>) :
+              <button className="w-[100px] md:w-[150px] md:text-[19px] bg-[#982293] text-white outline-none border-none" type="submit">{ loading ? <DatasIsaLoading />: "Submit"}</button>
+            //   )}
             )}
           </div>
         </form>

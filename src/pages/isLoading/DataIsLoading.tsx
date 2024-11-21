@@ -6,7 +6,7 @@ export const DatasIsaLoading = () => {
   return (
     <>
       <RotatingLines
-        strokeColor="#982293"
+        strokeColor="#fff"
         strokeWidth="5"
         animationDuration="0.75"
         width="30"
