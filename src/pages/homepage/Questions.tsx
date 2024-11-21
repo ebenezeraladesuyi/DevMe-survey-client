@@ -34,16 +34,16 @@ const Questions: Question[] = [
 
     { id: "q16", type: "radio", question: "- Do you believe that integrating life skills, emotional well-being, and academic support into one comprehensive program is necessary for your teenager’s future success?", options: ["Yes, it’s essential for their growth and success", "Yes, but I’m not sure if this is the right solution", "No, I prefer focusing solely on academic support", "No, I don’t think all these areas are needed"] },
 
-    { id: "q16", type: "radio", question: "- How important is it for the program to include therapy or counseling services?", options: ["Very Important", "Somewhat Important", "Not Important"] },
+    { id: "q17", type: "radio", question: "- How important is it for the program to include therapy or counseling services?", options: ["Very Important", "Somewhat Important", "Not Important"] },
 
 
-    { id: "q17", type: "radio", question: "- Does your child have a mobile phone they can use for digital learning and support?", options: ["Yes", "No", "Not Sure"] },
+    { id: "q18", type: "radio", question: "- Does your child have a mobile phone they can use for digital learning and support?", options: ["Yes", "No", "Not Sure"] },
 
-    { id: "q18", type: "radio", question: "- Has your child gained admission into a secondary school, university, or any other higher learning institution?", options: ["Yes, they have gained admission", "No, they are still in the application process", "No, they have not applied yet", "Not Sure"] },
+    { id: "q19", type: "radio", question: "- Has your child gained admission into a secondary school, university, or any other higher learning institution?", options: ["Yes, they have gained admission", "No, they are still in the application process", "No, they have not applied yet", "Not Sure"] },
 
-    { id: "q19", type: "textarea", question: "- What is your biggest concern regarding your child's education and future?" },
+    { id: "q20", type: "textarea", question: "- What is your biggest concern regarding your child's education and future?" },
 
-    { id: "q20", type: "radio", question: "- Would you be open to a follow-up consultation to learn more about how DevMe can support your child’s development?", options: ["Yes", "No", "Maybe"] },
+    { id: "q21", type: "radio", question: "- Would you be open to a follow-up consultation to learn more about how DevMe can support your child’s development?", options: ["Yes", "No", "Maybe"] },
 
     // { id: "q4", type: "textarea", question: "- What is your biggest concern regarding your child's education and future?" },
 
